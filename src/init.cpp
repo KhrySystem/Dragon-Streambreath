@@ -3,7 +3,7 @@
 DGAPI void dgStreamInit() {
     vkEnumerateInstanceLayerProperties(&dgStreamEngine::layerCount, nullptr);
 
-    dgEngine::availableLayers.resize(dgStreamEngine::layerCount);
+    dgStreamEngine::availableLayers.resize(dgStreamEngine::layerCount);
     vkEnumerateInstanceLayerProperties(&dgStreamEngine::layerCount, dgStreamEngine::availableLayers.data());
 
     dgStreamEngine::debugMessengerCreateInfo.flags = NULL;
