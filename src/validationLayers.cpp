@@ -1,11 +1,8 @@
 #include <dragon/dragon.hpp>
 
-VkInstance dgEngine::vkInstance;
-
-#ifdef DRAGON_STREAMBREATH_ENABLED
-	std::vector<const char*> dgEngine::requestedValidationLayers;
-	std::vector<VkLayerProperties> dgEngine::availableLayers;
-#endif
+VkInstance Dragon::engine::vkInstance;
+std::vector<const char*> Dragon::Stream::engine::availibleLayerNames;
+std::vector<VkLayerProperties> Dragon::Stream::engine::availableLayers;
 
 DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(
 	VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
@@ -50,9 +47,9 @@ DGAPI VkResult dgCreateDebugUtilsMessengerEXT(
 	const VkAllocationCallbacks* allocator,
 	VkDebugUtilsMessengerEXT* debugMessenger
 ) {
-	auto func = (PFN_vkCreateDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(dgEngine::vkInstance, "vkCreateDebugUtilsMessengerEXT"));
+	auto func = (PFN_vkCreateDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::engine::vkInstance, "vkCreateDebugUtilsMessengerEXT"));
 	if(func != nullptr) {
-		return func(dgEngine::vkInstance, createInfo, allocator, debugMessenger);
+		return func(Dragon::engine::vkInstance, createInfo, allocator, debugMessenger);
 	} else {
 		return VK_ERROR_EXTENSION_NOT_PRESENT;
 	}
@@ -62,9 +59,9 @@ DGAPI void dgDestroyDebugUtilsMessengerEXT(
 	VkDebugUtilsMessengerEXT debugMessenger, 
 	const VkAllocationCallbacks* allocator
 ) {
-	auto func = (PFN_vkDestroyDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(dgEngine::vkInstance, "vkDestroyDebugUtilsMessengerEXT"));
+	auto func = (PFN_vkDestroyDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::engine::vkInstance, "vkDestroyDebugUtilsMessengerEXT"));
 	if(func != nullptr) {
-		func(dgEngine::vkInstance, debugMessenger, allocator);
+		func(Dragon::engine::vkInstance, debugMessenger, allocator);
 	}
 }
 
@@ -121,6 +118,6 @@ DGAPI std::string dgConvertVkResultToString(VkResult result) {
 	};
 }
 
-DGAPI DG_BOOL dgIsValidationLayerSupported(std::string layerName) {
+DGAPI DgBool32 Dragon::Stream::isValidationLayerSupported(std::string layerName) {
 	return DG_FALSE;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <dragon/stream/dgStreamEngine.hpp>
+#include "dgStreamEngine.hpp"
+#include "init.hpp"
 #include <dragon/dg_backend.hpp>
 
 DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(

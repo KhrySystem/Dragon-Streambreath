@@ -2,5 +2,7 @@
 
 #include <dragon/dg_backend.hpp>
 
-DGAPI void dgStreamInit();
-DGAPI void dgStreamTerminate();
+namespace Dragon::Stream {
+	DGAPI void init();
+	DGAPI void terminate();
+}
