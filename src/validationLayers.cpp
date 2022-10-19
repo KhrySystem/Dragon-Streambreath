@@ -1,8 +1,8 @@
 #include <dragon/dragon.hpp>
 
-VkInstance Dragon::engine::vkInstance;
-std::vector<const char*> Dragon::Stream::engine::availibleLayerNames;
-std::vector<VkLayerProperties> Dragon::Stream::engine::availableLayers;
+VkInstance Dragon::Engine::vkInstance;
+std::vector<const char*> Dragon::Stream::Engine::availibleLayerNames;
+std::vector<VkLayerProperties> Dragon::Stream::Engine::availableLayers;
 
 DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(
 	VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
@@ -47,9 +47,9 @@ DGAPI VkResult dgCreateDebugUtilsMessengerEXT(
 	const VkAllocationCallbacks* allocator,
 	VkDebugUtilsMessengerEXT* debugMessenger
 ) {
-	auto func = (PFN_vkCreateDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::engine::vkInstance, "vkCreateDebugUtilsMessengerEXT"));
+	auto func = (PFN_vkCreateDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::Engine::vkInstance, "vkCreateDebugUtilsMessengerEXT"));
 	if(func != nullptr) {
-		return func(Dragon::engine::vkInstance, createInfo, allocator, debugMessenger);
+		return func(Dragon::Engine::vkInstance, createInfo, allocator, debugMessenger);
 	} else {
 		return VK_ERROR_EXTENSION_NOT_PRESENT;
 	}
@@ -59,9 +59,9 @@ DGAPI void dgDestroyDebugUtilsMessengerEXT(
 	VkDebugUtilsMessengerEXT debugMessenger, 
 	const VkAllocationCallbacks* allocator
 ) {
-	auto func = (PFN_vkDestroyDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::engine::vkInstance, "vkDestroyDebugUtilsMessengerEXT"));
+	auto func = (PFN_vkDestroyDebugUtilsMessengerEXT)(vkGetInstanceProcAddr(Dragon::Engine::vkInstance, "vkDestroyDebugUtilsMessengerEXT"));
 	if(func != nullptr) {
-		func(Dragon::engine::vkInstance, debugMessenger, allocator);
+		func(Dragon::Engine::vkInstance, debugMessenger, allocator);
 	}
 }
 
