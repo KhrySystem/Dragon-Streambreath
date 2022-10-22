@@ -1,5 +1,9 @@
 #include <dragon/stream/dgStream.hpp>
 
+uint32_t Dragon::Stream::Engine::layerCount;
+VkDebugUtilsMessengerEXT Dragon::Stream::Engine::debugMessenger;
+VkDebugUtilsMessengerCreateInfoEXT Dragon::Stream::Engine::debugMessengerCreateInfo;
+
 DGAPI void Dragon::Stream::init() {
     vkEnumerateInstanceLayerProperties(&Dragon::Stream::Engine::layerCount, nullptr);
 

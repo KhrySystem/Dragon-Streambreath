@@ -3,6 +3,7 @@
 #include "dgStreamEngine.hpp"
 #include "init.hpp"
 #include <dragon/dg_backend.hpp>
+#include <dragon/dgEngine.hpp>
 
 DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(
 	VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
