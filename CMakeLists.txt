@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.24)
 
-file(GLOB_RECURSE CXX_FILES ./src/*.cpp)
+set(CXX_FILES src/init.cpp src/validationLayers.cpp)
 
-add_library(streambreath ${CXX_FILES})
+if(DRAGON_BUILD_SHARED)
+	add_library(streambreath SHARED ${CXX_FILES})
+else() 
+	add_library(streambreath STATIC ${CXX_FILES})
+endif()
 target_include_directories(streambreath PUBLIC ${Dragon_INCLUDE_DIRS})
-target_link_libraries(streambreath PUBLIC ${Dragon_LINK_LIBRARIES})
+target_link_libraries(streambreath PUBLIC ${Boost_LIBRARIES} ${Vulkan_LIBRARiES})
 add_library(Dragon::Streambreath ALIAS streambreath)

@@ -13,14 +13,12 @@ DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(
 );
 
 DGAPI VkResult dgCreateDebugUtilsMessengerEXT(
-	VkInstance instance, 
 	const VkDebugUtilsMessengerCreateInfoEXT* createInfo,
 	const VkAllocationCallbacks* allocator,
 	VkDebugUtilsMessengerEXT* debugMessenger
 );
 
 DGAPI void dgDestroyDebugUtilsMessengerEXT(
-	VkInstance instance, 
 	VkDebugUtilsMessengerEXT debugMessenger, 
 	const VkAllocationCallbacks* allocator
 );

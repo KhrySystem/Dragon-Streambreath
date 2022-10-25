@@ -18,8 +18,12 @@ DGAPI void Dragon::Stream::init() {
     Dragon::Stream::Engine::debugMessengerCreateInfo.pUserData = NULL;
     Dragon::Stream::Engine::debugMessengerCreateInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
 
-    VkResult result = dgCreateDebugUtilsMessengerEXT(Dragon::Engine::vkInstance, &Dragon::Stream::Engine::debugMessengerCreateInfo, NULL, &Dragon::Stream::Engine::debugMessenger);
+    VkResult result = dgCreateDebugUtilsMessengerEXT(&Dragon::Stream::Engine::debugMessengerCreateInfo, NULL, &Dragon::Stream::Engine::debugMessenger);
     if(result != VK_SUCCESS) {
         throw Dragon::VulkanDebugUtilsMessengerEXTCreationFailedException() << Dragon::ExceptionInfo(("Vulkan DebugUtilsMessengerEXT Creation Failed with " + dgConvertVkResultToString(result)).c_str());
     }
+}
+
+DGAPI void Dragon::Stream::terminate() {
+    dgDestroyDebugUtilsMessengerEXT(Dragon::Stream::Engine::debugMessenger, NULL);
 }
