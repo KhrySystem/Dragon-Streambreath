@@ -24,3 +24,4 @@ DGAPI void dgDestroyDebugUtilsMessengerEXT(
 );
 
 DGAPI std::string dgConvertVkResultToString(VkResult result);
+DGAPI std::string dgConvertALErrorToString(ALenum error);
