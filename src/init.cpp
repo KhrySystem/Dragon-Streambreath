@@ -24,6 +24,10 @@ DGAPI void Dragon::Stream::init() {
     }
 }
 
+DGAPI void Dragon::Stream::setErrorCallback(void* callback) {
+    Dragon::Stream::Engine::errorCallback = callback;
+}
+
 DGAPI void Dragon::Stream::terminate() {
     dgDestroyDebugUtilsMessengerEXT(Dragon::Stream::Engine::debugMessenger, NULL);
 }

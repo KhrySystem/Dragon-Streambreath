@@ -5,6 +5,12 @@
 #include <dragon/dg_backend.hpp>
 #include <dragon/dgEngine.hpp>
 
+/// @brief 
+/// @param messageSeverity Contains the severity of the Vulkan Error
+/// @param messageType Contains the type of the Vulkan Error
+/// @param callbackData Contains information about the Vulkan error
+/// @param userData A user specified callback
+/// @return 
 DGAPI VKAPI_ATTR VkBool32 VKAPI_CALL dgVkValidationLayerDebugCalback(
 	VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
 	VkDebugUtilsMessageTypeFlagsEXT messageType,
