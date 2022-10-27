@@ -133,3 +133,9 @@ DGAPI std::string dgConvertALErrorToString(ALenum error) {
 DGAPI DgBool32 Dragon::Stream::isValidationLayerSupported(std::string layerName) {
 	return DG_FALSE;
 }
+
+DGAPI void Dragon::Stream::throwError(Dragon::Error::ErrorInfo eInfo) {
+	if(Dragon::Stream::Engine::errorCallback != NULL) {
+		Dragon::Stream::Engine::errorCallback(eInfo);
+	}
+}

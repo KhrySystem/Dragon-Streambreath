@@ -1,4 +1,5 @@
 #include <dragon/stream/dgStream.hpp>
+#include <dragon/options.hpp>
 
 uint32_t Dragon::Stream::Engine::layerCount;
 VkDebugUtilsMessengerEXT Dragon::Stream::Engine::debugMessenger;
@@ -20,7 +21,12 @@ DGAPI void Dragon::Stream::init() {
 
     VkResult result = dgCreateDebugUtilsMessengerEXT(&Dragon::Stream::Engine::debugMessengerCreateInfo, NULL, &Dragon::Stream::Engine::debugMessenger);
     if(result != VK_SUCCESS) {
-        throw Dragon::VulkanDebugUtilsMessengerEXTCreationFailedException() << Dragon::ExceptionInfo(("Vulkan DebugUtilsMessengerEXT Creation Failed with " + dgConvertVkResultToString(result)).c_str());
+        if(Dragon::getOption(DRAGON_STREAMBREATH_ENABLED)) {
+            Dragon::Error::ErrorInfo info{};
+            info.code = "2.2.9.0";
+            info.message = "The Vulkan debugger failed to be initialized!";
+            Dragon::Stream::throwError(info);
+        }
     }
 }
 

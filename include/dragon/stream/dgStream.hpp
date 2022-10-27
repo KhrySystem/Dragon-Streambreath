@@ -2,7 +2,7 @@
 
 #include "dgStreamEngine.hpp"
 #include "init.hpp"
-#include <dragon/dg_backend.hpp>
+#include <dragon/backend.hpp>
 #include <dragon/dgEngine.hpp>
 
 /// @brief 

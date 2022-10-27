@@ -1,6 +1,8 @@
 #pragma once 
 
-#include <dragon/dg_backend.hpp>
+#include <dragon/backend.hpp>
+
+#include "error.hpp"
 
 namespace Dragon::Stream {
 	typedef struct Engine {
@@ -23,9 +25,7 @@ namespace Dragon::Stream {
 	DGAPI void setErrorCallback(void* callback);
 	
 	/// @brief Throws an error to the error callback set with setErrorCallback(void*)
-	/// @param eType Specifies the error type and first digit of the message code.
-	/// @param eSeverity Specifies how bad the error is and the second digit of the message code.
-	/// @param eMessage Contains a string of the error message, along with a 32 bit unsigned int containing a summary of the error. 
+	/// @param eMessage Contains a string of the error message, along with a string containing a tag to the error. 
 	/// @return 
 	DGAPI void throwError(Dragon::Error::ErrorInfo eInfo);
 }
