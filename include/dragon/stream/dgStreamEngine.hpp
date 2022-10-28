@@ -4,6 +4,8 @@
 
 #include "error.hpp"
 
+typedef void(*ErrorCallback)(Dragon::Error::ErrorInfo);
+
 namespace Dragon::Stream {
 	typedef struct Engine {
 		static uint32_t layerCount;
@@ -12,7 +14,7 @@ namespace Dragon::Stream {
 		static VkDebugUtilsMessengerEXT debugMessenger;
 		static VkDebugUtilsMessengerCreateInfoEXT debugMessengerCreateInfo;
 
-		static void* errorCallback;
+		static ErrorCallback errorCallback(Dragon::Error::ErrorInfo);
 	} Engine;
 
 	/// @brief Checks if a validation layer is supported / enabled. All layers are by default enabled.
@@ -22,7 +24,7 @@ namespace Dragon::Stream {
 	/// @brief Checks if a validation layer is supported / enabled. All layers are by default enabled.
 	/// @param callback a pointer to the function that should be called as the output.
 	/// @return
-	DGAPI void setErrorCallback(void* callback);
+	DGAPI void setErrorCallback(void (*callback)(Dragon::Error::ErrorInfo));
 	
 	/// @brief Throws an error to the error callback set with setErrorCallback(void*)
 	/// @param eMessage Contains a string of the error message, along with a string containing a tag to the error. 
