@@ -7,7 +7,7 @@ uint32_t Stream::Engine::layerCount;
 VkDebugUtilsMessengerEXT Stream::Engine::debugMessenger;
 VkDebugUtilsMessengerCreateInfoEXT Stream::Engine::debugMessengerCreateInfo;
 
-DGAPI void Stream::init() {
+DGAPI DgBool32 Stream::init() {
     vkEnumerateInstanceLayerProperties(&Stream::Engine::layerCount, nullptr);
 
     Stream::Engine::availableLayers.resize(Stream::Engine::layerCount);
@@ -21,7 +21,7 @@ DGAPI void Stream::init() {
     Stream::Engine::debugMessengerCreateInfo.pUserData = NULL;
     Stream::Engine::debugMessengerCreateInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
 
-    VkResult result = dgCreateDebugUtilsMessengerEXT(&Stream::Engine::debugMessengerCreateInfo, NULL, &Stream::Engine::::debugMessenger);
+    VkResult result = dgCreateDebugUtilsMessengerEXT(&Stream::Engine::debugMessengerCreateInfo, NULL, &Stream::Engine::debugMessenger);
     if(result != VK_SUCCESS) {
         if(getOption(DRAGON_STREAMBREATH_ENABLED)) {
             Error::ErrorInfo info{};
@@ -29,7 +29,9 @@ DGAPI void Stream::init() {
             info.message = "The Vulkan debugger failed to be initialized!";
             Stream::throwError(info);
         }
+        return DG_FALSE;
     }
+    return DG_TRUE;
 }
 
 DGAPI void Stream::setErrorCallback(ErrorCallback callback) {
